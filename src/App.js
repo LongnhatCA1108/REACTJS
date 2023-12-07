@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route
           path="/todo/:id"
-          element={<Navigate to="/clock/${params.id}" />}
+          element={<TodoFeatutes />}
         />
         <Route path="/clock" element={<Clock />} />
         <Route path="/Album" element={<AlbumFeatutes />} />
