@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from "query-string";
+import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-//
+
+
 TodoFeatutes.propTypes = {
 
 }
+
+
 //
 function TodoFeatutes(props) {
     const inittodoList = [
@@ -24,9 +31,14 @@ function TodoFeatutes(props) {
             status: "new"
         },
     ]
-
+    const location = useLocation();
+    const navigate = useNavigate();
     const [todoList, setTodoList] = useState(inittodoList)
-    const [filteredStatus, setFilteredStatus] = useState('all')
+    const [filteredStatus, setFilteredStatus] = useState(() => {
+        const params = queryString.parse(location.search);
+        console.log(location);
+        return params.status || 'all'
+    })
     const handleTodoClick = (todo, idx) => {
         // clone current array to the new one
         const newTodoList = [...todoList];
@@ -40,17 +52,37 @@ function TodoFeatutes(props) {
         setTodoList(newTodoList)
     }
     const handleShowAllClick = () => {
-        setFilteredStatus('all');
+        // setFilteredStatus('all');
+        const queryparams = { status: "all" }
+        navigate("/todo?" + queryString.stringify(queryparams))
     }
     const handleShowCompletedClick = () => {
-        setFilteredStatus('completed');
+        // setFilteredStatus('completed');
+        const queryparams = { status: "completed" }
+        navigate("/todo?" + queryString.stringify(queryparams))
     }
     const handleShowNewClick = () => {
-        setFilteredStatus('new');
+        // setFilteredStatus('new');
+        const queryparams = { status: "new" }
+        navigate("/todo?" + queryString.stringify(queryparams))
     }
     const renderredTodoList = todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status)
+
+    const handleTodoFormSubmit = (values) => {
+        console.log(values)
+        const newTodo = {
+            id: todoList.length + 1,
+            title: values.title,
+            status: "new"
+        };
+        const newTodoList = [...todoList,newTodo];
+        setTodoList(newTodoList);
+    }
+
     return (
         <div>
+            <h3>What to do</h3>
+            <TodoForm onSubmit={handleTodoFormSubmit}></TodoForm>
             <h3>Todolist</h3>
             <TodoList todoList={renderredTodoList} onTodoClick={handleTodoClick} />
             <div>

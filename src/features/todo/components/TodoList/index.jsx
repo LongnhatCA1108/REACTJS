@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import './styles.scss'
-//
+import { useLocation } from "react-router-dom";
+
 TodoList.propTypes = {
     todoList: PropTypes.array,
     onTodoClick: PropTypes.func
 }
-//
+
 TodoList.defaultProps = {
     todoList: [],
     onTodoClick: null,
 }
 function TodoList({ todoList, onTodoClick }) {
+
+
+
     const handleTodoClick = (todo, idx) => {
         if (!onTodoClick) return;
         onTodoClick(todo, idx)

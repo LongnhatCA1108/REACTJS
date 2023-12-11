@@ -1,44 +1,41 @@
-import { Routes, Route, Link, NavLink, Navigate } from 'react-router-dom';
+import Header from 'components/Header';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import React from 'react';
 //import TodoFeatutes from './features/todo';
 import AlbumFeatutes from './features/Album';
 // import ColorBox from './components/ColorBox';
 // import Counter from './components/Counter';
 // import TodoList from './features/todo/components/TodoList';
-import TodoFeatutes from './features/todo';
+import CounterFeature from 'features/Counter';
 import Clock from './components/Clock';
+import TodoFeatutes from './features/todo';
 // import CustomTextInput from './components/CustomTextInput'
-function App() {
-  return (
+import { useEffect } from 'react';
+import { enqueueSnackbar } from 'notistack';
 
-    <div>
-      Đây là cái header
-      <div><Link to="/todo/6699">todo</Link></div>
-      <div><Link to="/clock">Clock</Link></div>
-      <div><Link to="/Album">Album</Link></div>
-      <div>
-        <NavLink
-          to="/Album"
-          className={({ isActive, isPending, isTransitioning }) =>
-            [
-              isPending ? "pending" : "",
-              isActive ? "active" : "",
-              isTransitioning ? "transitioning" : "",
-            ].join(" ")
-          }
-        >Album</NavLink></div>
+
+function App() {
+  useEffect(() =>{
+
+
+  },[])
+
+
+  return (
+  <div id="body" className='App'>
+
+    <Header />
+    <div id="content">
       <Routes>
-        <Route
-          path="/todo/:id"
-          element={<TodoFeatutes />}
-        />
+        <Route path="/count" element={<CounterFeature />}/>
+        <Route path="/todo" element={<TodoFeatutes />}/>
         <Route path="/clock" element={<Clock />} />
         <Route path="/Album" element={<AlbumFeatutes />} />
+        <Route path="*" element={<p>Trang này không tồn tại</p>} />
       </Routes>
-      Đây là cái footer
     </div>
 
+  </div>
   );
 }
 

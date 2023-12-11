@@ -1,5 +1,22 @@
 .App {
   text-align: center;
+
+}
+
+.navbar {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  align-content: center;
+  padding: 0px 20px;
+
+}
+
+.link-navbar {
+  padding: 5px;
+  margin: 5px;
+  min-width: 20%;
+  border-radius: 5rem;
 }
 
 .App-logo {
