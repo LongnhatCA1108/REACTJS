@@ -21,7 +21,7 @@ function AlbumFeatutes(props) {
         {
             id: 3,
             name: "Giai Điệu Chữa Lành",
-            thumbnailUrl: "	https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_jpeg/over/8/3/5/1/8351ceb59c750597f4fd74670d2c9088.jpg"
+            thumbnailUrl: "	https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_jpeg/cover/8/3/5/1/8351ceb59c750597f4fd74670d2c9088.jpg"
         },
     ]
     return (
